@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'models/team.dart';
 
+// ignore: must_be_immutable
 class HomePage extends StatelessWidget {
   List<Team> teams = [];
+
+  HomePage({super.key});
 
   // get teams
   Future getTeams() async {
@@ -19,6 +22,7 @@ class HomePage extends StatelessWidget {
       teams.add(team);
     }
 
+    // ignore: avoid_print
     print(teams.length);
   }
 
@@ -32,7 +36,7 @@ class HomePage extends StatelessWidget {
               if (snapshot.connectionState == ConnectionState.done) {
                 return ListView.builder(
                   itemCount: teams.length,
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -50,7 +54,7 @@ class HomePage extends StatelessWidget {
                   },
                 );
               } else {
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               }
             }),
       ),
